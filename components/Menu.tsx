@@ -1,10 +1,14 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { User } from "lucide-react";
+import { ChevronDown, User} from "lucide-react";
+import { createClient } from '@/utils/supabase/server'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 
+export default async function Menu() {
+    const supabase = await createClient();
 
+    const { data: { user } } = await supabase.auth.getUser();
 
-export default function Menu() {
     return(
         <header className="bg-white w-full border-b">
             <div className="py-4 max-w-[1200px] px-8 mx-auto flex justify-between items-center">
@@ -34,16 +38,38 @@ export default function Menu() {
                 </div>
 
                 <div className="flex gap-x-2">
-                    <Link href="/bil">
-                        <Button>
-                            Søk opp bilen din nå!
-                        </Button>
-                    </Link>
-                    <Link href="/auth">
-                        <Button variant="secondary">
-                            <User />
-                        </Button>
-                    </Link>
+                    {user ? (
+                        <DropdownMenu>
+                            <DropdownMenuTrigger>
+                                <Button>
+                                    {user.email}
+                                    <ChevronDown />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent>
+                                <DropdownMenuLabel>Min Bruker</DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                <Link href="/account">
+                                    <DropdownMenuItem>Profil</DropdownMenuItem>
+                                </Link>
+                                <DropdownMenuItem>Abonnement</DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    ): (
+                        <div className="flex gap-x-2">
+                            <Link href="/bil">
+                                <Button>
+                                    Søk opp bilen din nå!
+                                </Button>
+                            </Link>
+                            <Link href="/login">
+                                <Button variant="secondary">
+                                    <User />
+                                </Button>
+                            </Link>   
+                        </div>
+                    )}
+                  
                 </div>
               
             </div>

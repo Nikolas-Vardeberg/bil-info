@@ -1,3 +1,4 @@
+import AccountForm from '@/components/account-form'
 import { createClient } from '@/utils/supabase/server'
 
 export default async function Account() {
@@ -7,9 +8,5 @@ export default async function Account() {
     data: { user },
   } = await supabase.auth.getUser()
 
-  return (
-    <pre>
-        {JSON.stringify(user, undefined, 2)}
-    </pre>
-  )
+  return <AccountForm user={user} />
 }
