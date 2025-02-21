@@ -1,9 +1,8 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Funnel_Display } from "next/font/google";
-import "./globals.css";
-import Menu from "@/components/Menu";
 
-const geistMono = Funnel_Display({
+const funnelDisplay = Funnel_Display({
   variable: "--font-funnel_display",
   subsets: ["latin"],
 });
@@ -21,9 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistMono.variable} antialiased`}
+        className={`${funnelDisplay.variable} antialiased`}
       >
-        <Menu />
         {children}
       </body>
     </html>

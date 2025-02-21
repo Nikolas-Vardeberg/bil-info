@@ -53,9 +53,6 @@ export default async function Menu() {
                                     <DropdownMenuItem>Profil</DropdownMenuItem>
                                 </Link>
                                 <DropdownMenuItem>Abonnement</DropdownMenuItem>
-                                <Button className="w-full rounded-none">
-                                    Log ut <ArrowRight />
-                                </Button>
                             </DropdownMenuContent>
                         </DropdownMenu>
                     ): (
