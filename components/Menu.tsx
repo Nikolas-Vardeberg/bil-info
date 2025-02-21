@@ -9,6 +9,10 @@ export default async function Menu() {
 
     const { data: { user } } = await supabase.auth.getUser();
 
+    const handleLogout = () => {
+        supabase.auth.signOut();
+    }
+
     return(
         <header className="bg-white w-full border-b">
             <div className="py-4 max-w-[1200px] px-8 mx-auto flex justify-between items-center">
@@ -49,10 +53,12 @@ export default async function Menu() {
                             <DropdownMenuContent>
                                 <DropdownMenuLabel>Min Bruker</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
-                                <Link href="/account">
                                     <DropdownMenuItem>Profil</DropdownMenuItem>
-                                </Link>
                                 <DropdownMenuItem>Abonnement</DropdownMenuItem>
+                                <Button className="w-full" variant="destructive">
+                                    Log ut
+                                    <ArrowRight />
+                                </Button>
                             </DropdownMenuContent>
                         </DropdownMenu>
                     ): (

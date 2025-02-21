@@ -1,26 +1,26 @@
-import { login } from "./actions";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { signup } from "../login/actions";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function Page() {
     return (
-        <div className="bg-green-100 relative h-screen items-center justify-center flex py-12 sm:py-20">
+        <div className="bg-green-100 h-screen items-center justify-center flex py-12 sm:py-20">
             <Link href="/">
                 <Button className="top-10 left-10 absolute" variant="outline">
                     <ArrowLeft />
                     Gå tilbake
                 </Button>
             </Link>
-           
             <div className="flex mx-auto max-w-[1200px] px-8">
-                <Card>
+                <Card className="w-full">
                     <CardHeader>
-                        <CardTitle className="text-3xl !font-normal">Velkommen tilbake! 😊</CardTitle>
-                        <CardDescription>Logg inn for å fortsette der du slapp.</CardDescription>
+                        <CardTitle className="text-3xl !font-normal">Opprett Konto ✨🚀</CardTitle>
+                        <CardDescription>Bli en del av vårt fellesskap og få full kontroll over bilen din!</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <form className="space-y-5">
@@ -32,14 +32,18 @@ export default function Page() {
                                 <Label htmlFor="password">Passord</Label>
                                 <Input id="passwor" name="password" type="password" placeholder="passord" required />
                             </div>
-                            <Button formAction={login} className="w-full">
-                                Login
+                            <div className="flex items-center space-x-2">
+                                <Checkbox id="terms" required />
+                                <Label htmlFor="terms">Accept terms and conditions</Label>
+                            </div>
+                            <Button formAction={signup} className="w-full">
+                                Registrer deg
                                 <ArrowRight />
                             </Button>
                         </form>
                     </CardContent>
                     <CardFooter>
-                        <p>Har ikke en bruker?{" "}<Link href="/signup" className="font-bold underline">Registrer deg</Link></p>
+                        <p>Har allerede en bruker?{" "}<Link href="/login" className="font-bold underline">Login</Link></p>
                     </CardFooter>
                 </Card>
             </div>
