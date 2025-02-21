@@ -1,11 +1,11 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/ui/card";
+import { Label } from "@/ui/label";
+import { Input } from "@/ui/input";
+import { Button } from "@/ui/button";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { signup } from "../login/actions";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Checkbox } from "@/ui/checkbox";
 
 export default function Page() {
     return (

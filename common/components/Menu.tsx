@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Button } from "./ui/button";
 import { ArrowRight, ChevronDown, User} from "lucide-react";
-import { createClient } from '@/utils/supabase/server'
+import { Button } from "./ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { createClient } from "@/utils/supabase/server";
 
 export default async function Menu() {
     const supabase = await createClient();
