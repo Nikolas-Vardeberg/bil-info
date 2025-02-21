@@ -8,9 +8,11 @@ export default function Menu() {
     return(
         <header className="bg-white w-full border-b">
             <div className="py-4 max-w-[1200px] px-8 mx-auto flex justify-between items-center">
-                <Button variant="link">
-                    Bil Info
-                </Button>
+                <Link href="/">
+                    <Button variant="link">
+                        Bil Info
+                    </Button>
+                </Link>
 
                 <div className="hidden md:block">
                     <Link href="/om-oss">

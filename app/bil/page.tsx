@@ -50,7 +50,7 @@ export default function Page() {
   }
 
   return (
-    <div className="h-screen items-center justify-center flex flex-col">
+    <div className="h-svh items-center justify-center flex flex-col">
       {loading ? (
         <p>loading...</p>
       ): (
