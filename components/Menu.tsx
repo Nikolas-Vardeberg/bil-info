@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { User } from "lucide-react";
 
 
 
@@ -30,11 +31,19 @@ export default function Menu() {
                     
                 </div>
 
-                <Link href="/bil">
-                    <Button>
-                        Søk opp bilen din nå!
-                    </Button>
-                </Link>
+                <div className="flex gap-x-2">
+                    <Link href="/bil">
+                        <Button>
+                            Søk opp bilen din nå!
+                        </Button>
+                    </Link>
+                    <Link href="/auth">
+                        <Button variant="secondary">
+                            <User />
+                        </Button>
+                    </Link>
+                </div>
+              
             </div>
         </header>
     )

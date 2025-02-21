@@ -9,8 +9,8 @@ export default {
   ],
   theme: {
 	fontFamily: {
-		"geist-mont": [
-			"var(--font-geist-mono)"
+		"funnel_display": [
+			"var(--font-funnel_display)"
 		]
 	},
   	extend: {

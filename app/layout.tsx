@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
-import { Funnel_Display, Geist, Geist_Mono } from "next/font/google";
+import { Funnel_Display } from "next/font/google";
 import "./globals.css";
 import Menu from "@/components/Menu";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
 const geistMono = Funnel_Display({
-  variable: "--font-geist-mono",
+  variable: "--font-funnel_display",
   subsets: ["latin"],
 });
 
@@ -26,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistMono.variable} antialiased`}
       >
         <Menu />
         {children}

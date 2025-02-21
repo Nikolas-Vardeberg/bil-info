@@ -9,7 +9,7 @@ import { Card, CardDescription } from "../ui/card"
 
 export default function HomeView() {
     const renderHero = () => (
-        <div className="bg-yellow-100 py-12 sm:py-20">
+        <div className="bg-green-100 py-12 sm:py-20">
             <div className="flex mx-auto max-w-[1200px] px-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 items-center justify-between w-full gap-8">
                     <div className="flex flex-col gap-8">
@@ -37,7 +37,8 @@ export default function HomeView() {
     )
 
     const renderFeatures = () => (
-        <div className="py-10 flex flex-col gap-8 px-8">
+        <div className="bg-white w-full">
+        <div className="py-10 flex flex-col max-w-[1200px] mx-auto gap-8 px-8">
             <h2 className="text-2xl sm:text-4xl">Slik fungerer det</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 w-full md:grid-cols-4 gap-8 justify-between">
                 <Card className="w-full items-center group text-center p-10 justify-center flex flex-col gap-4">
@@ -77,14 +78,13 @@ export default function HomeView() {
                 </Card>
             </div>
         </div>
+        </div>
     )
 
     return(
         <div className="flex flex-col">
             {renderHero()}
-            <div className="max-w-[1200px] mx-auto flex flex-col">
-                {renderFeatures()}
-            </div>
+            {renderFeatures()}
         </div>
     )
 }
