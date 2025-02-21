@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { ChevronDown, User} from "lucide-react";
+import { ArrowRight, ChevronDown, User} from "lucide-react";
 import { createClient } from '@/utils/supabase/server'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 
@@ -53,6 +53,9 @@ export default async function Menu() {
                                     <DropdownMenuItem>Profil</DropdownMenuItem>
                                 </Link>
                                 <DropdownMenuItem>Abonnement</DropdownMenuItem>
+                                <Button className="w-full rounded-none">
+                                    Log ut <ArrowRight />
+                                </Button>
                             </DropdownMenuContent>
                         </DropdownMenu>
                     ): (
