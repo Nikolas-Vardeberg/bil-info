@@ -1,95 +1,85 @@
-"use client"
+import { Button } from "@/components/ui/button";
+import { Card, CardDescription } from "@/components/ui/card";
+import { ArrowRight, Car, CaseSensitive, Check, Info } from 'lucide-react';
+import Image from "next/image";
+import Link from "next/link";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { Button } from "@/components/ui/button"
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { useState } from "react"
-import axios from "axios"
- 
-const formSchema = z.object({
-  regNumber: z.string().min(2).max(50),
-})
+export default async function Page() {
+  return(
+    <>
+    <div>
+    <div className="bg-yellow-100 py-12 sm:py-20">
+      <div className="flex mx-auto max-w-[1200px] px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 items-center justify-between w-full gap-8">
+          <div className="flex flex-col gap-8">
+            <h1 className="text-3xl sm:text-5xl">Få Full Kontroll Over Bilen Din 🚗💡</h1>
 
-export default function Home() {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      regNumber: "",
-    },
-  })
-
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      setLoading(true);
-      setError(null);
-      
-      const response = await axios.post("/api/vehicle", {
-        regNumber: values.regNumber,
-      });
-      
-      setData(response.data);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  return (
-    <div className="h-screen items-center justify-center flex flex-col">
-      {loading ? (
-        <p>loading...</p>
-      ): (
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="regNumber"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Registrering nummer</FormLabel>
-                  <FormControl>
-                    <Input placeholder="CF 1111" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+            <p>Sjekk bilens historikk, spesifikasjoner og verdi på sekunder. Enkelt, raskt og nøyaktig – alt du trenger på ett sted.</p>
+            
+            <Link href="/bil" className="max-w-fit">
+              <Button className="">
+                Søk opp bilen din nå
+                <ArrowRight />
+              </Button>
+            </Link>
+          
+          </div>
+          <div>
+            <Image
+              src="/bilde.png"
+              height={600}
+              quality={100}
+              width={600}
+              alt="Bilde"
             />
-             <Button type="submit" disabled={loading}>
-              {loading ? "Searching..." : "Submit"}
-            </Button>
-          </form>
-        </Form>
-      )}
-
-      
-      {error && (
-        <div className="mt-4 p-4 bg-red-50 text-red-600 rounded-md">
-          {error}
+          </div>
         </div>
-      )}
-
-      {data && (
-        <div className="mt-4 p-4 bg-gray-50 rounded-md">
-          <pre className="whitespace-pre-wrap overflow-auto">
-            {JSON.stringify(data)}
-          </pre>
-        </div>
-      )}
+      </div>
     </div>
-  );
+
+
+    <div className="py-10 flex flex-col gap-8 mx-auto max-w-[1200px] px-8">
+      <h2 className="text-2xl sm:text-4xl">Slik fungerer det</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 w-full md:grid-cols-4 gap-8 justify-between">
+        
+        <Card className="w-full items-center group text-center p-10 justify-center flex flex-col gap-4">
+          <div className="bg-yellow-100 p-4 rounded-full border-none">
+            <Car />
+          </div>
+          <CardDescription>
+            <p className="text-black text-base group-hover:underline">Skriv inn registreringsnummer</p>
+          </CardDescription>
+        </Card>
+
+        <Card className="w-full items-center group text-center p-10 justify-center flex flex-col gap-4">
+          <div className="bg-blue-100 p-4 rounded-full border-none">
+            <CaseSensitive />
+          </div>
+          <CardDescription>
+            <p className="text-black text-base group-hover:underline">Få detaljer om bilen</p>
+          </CardDescription>
+        </Card>
+
+        <Card className="w-full items-center group text-center p-10 justify-center flex flex-col gap-4">
+          <div className="bg-green-100 p-4 rounded-full border-none">
+            <Info />
+          </div>
+          <CardDescription>
+            <p className="text-black text-base group-hover:underline">Sjekk bilens verdi</p>
+          </CardDescription>
+        </Card>
+
+        <Card className="w-full items-center group text-center p-10 justify-center flex flex-col gap-4">
+          <div className="bg-red-100 p-4 rounded-full border-none">
+            <Check />
+          </div>
+          <CardDescription>
+            <p className="text-black text-base group-hover:underline">Ta smartere beslutninger</p>
+          </CardDescription>
+        </Card>
+      </div>
+    </div>
+    </div>
+    </>
+  )
 }
