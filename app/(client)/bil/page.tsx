@@ -4,14 +4,15 @@ import type React from "react"
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { VehicleDetails } from "@/components/vechile-details"
-import { toast } from 'sonner'
+import { toast } from "sonner"
+import { VehicleData } from "@/types/root.types"
 
 export default function Home() {
   const [regNumber, setRegNumber] = useState("")
-  const [vehicleData, setVehicleData] = useState<any>(null)
+  const [vehicleData, setVehicleData] = useState<VehicleData | null>(null)
   const [isSearching, setIsSearching] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -26,28 +27,26 @@ export default function Home() {
         },
         body: JSON.stringify({ regNumber }),
       })
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
-      
+
       const data = await response.json()
-      
+
       if (!data.kjoretoydataListe?.length) {
-        toast.error('Ingen kjøretøy funnet', {
-          description: 'Kunne ikke finne kjøretøy med dette registreringsnummeret.',
-          style: { backgroundColor: '#ff0000', color: '#fff' }
+        toast.error("Ingen kjøretøy funnet", {
+          description: "Kunne ikke finne kjøretøy med dette registreringsnummeret.",
         })
-        return;
+        return
       }
-      
+
       setVehicleData(data.kjoretoydataListe[0])
       setIsSearching(false)
     } catch (error) {
       console.error("Error fetching vehicle data:", error)
-      toast.error('Feil ved søk', {
-        description: 'Det oppstod en feil ved henting av kjøretøydata. Vennligst prøv igjen.',
-        style: { backgroundColor: '#ff0000', color: '#fff' }
+      toast.error("Feil ved søk", {
+        description: "Det oppstod en feil ved henting av kjøretøydata. Vennligst prøv igjen.",
       })
     } finally {
       setIsLoading(false)
@@ -87,7 +86,7 @@ export default function Home() {
                 </div>
                 <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading ? (
-                    <Loader2 className="animate-spin h-4 w-4" />
+                    <Loader2 className="animate-spin h-5 w-5" />
                   ) : (
                     <>
                       Send inn
@@ -111,3 +110,4 @@ export default function Home() {
     </main>
   )
 }
+
