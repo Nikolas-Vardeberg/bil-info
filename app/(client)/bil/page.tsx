@@ -17,8 +17,17 @@ import { useState, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import axios from "axios"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card"
-import { Car, FileText, Info } from "lucide-react"
+import { Calendar, Car, Cog, FileSliders, FileText, Info, Ruler, Scale, Tag, Truck, Weight } from "lucide-react"
 import { Separator } from "@/ui/separator"
+import { Badge } from "@/ui/badge"
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
+import { Table, TableBody, TableCell, TableRow } from "@/ui/table"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/ui/tooltip"
+
  
 const formSchema = z.object({
   regNumber: z.string().min(2).max(50),
@@ -28,7 +37,8 @@ export default function Page() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState(null);
+
+  const [data, setData] = useState<any>(null);
   const [error, setError] = useState(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -78,17 +88,21 @@ export default function Page() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full">
                 <Card className="h-fit">
                   <CardHeader>
-                    <CardTitle className="flex items-center">
-                      <Car className="mr-2" /> Bil Detailjer
+                    <CardTitle className="flex justify-between">
+                      <div className="flex items-center">
+                        <Car className="mr-2" /> Bil Detailjer
+                      </div>
+                      <Button variant="default">
+                        {data?.kjoretoydataListe?.[0].kjoretoyId.kjennemerke ?? "Ukjent"}
+                      </Button>
                     </CardTitle>
                   </CardHeader>
-
                   <Separator />
 
-                  <CardContent>
-                    <div>
-                      {JSON.stringify(data, undefined, 2)}
-                    </div>
+                  <CardContent className="">
+                    <pre>
+                      {JSON.stringify(data?.kjoretoydataListe?.[0], undefined, 2)}
+                    </pre>
                   </CardContent>
                 </Card>
 
@@ -102,9 +116,9 @@ export default function Page() {
                   <Separator />
 
                   <CardContent>
-                    <div>
-                      {JSON.stringify(data, undefined, 2)}
-                    </div>
+                    <pre>
+                      {JSON.stringify(data?.kjoretoydataListe?.[0], undefined, 2)}
+                    </pre>
                   </CardContent>
                 </Card>
 
