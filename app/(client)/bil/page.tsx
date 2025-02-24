@@ -1,165 +1,113 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { Button } from "@/ui/button"
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/ui/form"
-import { Input } from "@/ui/input"
-import { useState, useEffect } from "react"
-import { useRouter, useSearchParams } from "next/navigation"
-import axios from "axios"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card"
-import { Car, FileText, Info } from "lucide-react"
-import { Separator } from "@/ui/separator"
+import type React from "react"
+import { useState } from "react"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { VehicleDetails } from "@/components/vechile-details"
+import { toast } from 'sonner'
 
-const formSchema = z.object({
-  regNumber: z.string().min(2).max(50),
-})
+export default function Home() {
+  const [regNumber, setRegNumber] = useState("")
+  const [vehicleData, setVehicleData] = useState<any>(null)
+  const [isSearching, setIsSearching] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
-export default function Page() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const [loading, setLoading] = useState(false);
-
-  const [data, setData] = useState<any>(null);
-  const [error, setError] = useState(null);
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      regNumber: searchParams.get("") || "",
-    },
-  })
-
-  useEffect(() => {
-    const regNumber = searchParams.get("");
-    if (regNumber) {
-      fetchVehicleData(regNumber);
-    }
-  }, [searchParams]);
-
-  async function fetchVehicleData(regNumber: string) {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsLoading(true)
     try {
-      setLoading(true);
-      setError(null);
+      const response = await fetch("/api/vehicle", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ regNumber }),
+      })
       
-      const response = await axios.post("/api/vehicle", {
-        regNumber,
-      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
       
-      setData(response.data);
-    } catch (e) {
-      console.error(e);
+      const data = await response.json()
+      
+      if (!data.kjoretoydataListe?.length) {
+        toast.error('Ingen kjøretøy funnet', {
+          description: 'Kunne ikke finne kjøretøy med dette registreringsnummeret.',
+          style: { backgroundColor: '#ff0000', color: '#fff' }
+        })
+        return;
+      }
+      
+      setVehicleData(data.kjoretoydataListe[0])
+      setIsSearching(false)
+    } catch (error) {
+      console.error("Error fetching vehicle data:", error)
+      toast.error('Feil ved søk', {
+        description: 'Det oppstod en feil ved henting av kjøretøydata. Vennligst prøv igjen.',
+        style: { backgroundColor: '#ff0000', color: '#fff' }
+      })
     } finally {
-      setLoading(false);
+      setIsLoading(false)
     }
   }
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    router.push(`?=${values.regNumber}`);
+  const handleReset = () => {
+    setIsSearching(true)
+    setRegNumber("")
+    setVehicleData(null)
   }
 
   return (
-    <div className="h-full min-h-screen bg-green-100 items-center justify-center flex flex-col">
-      {error ? (
-        <Card className="bg-red-50">
-          <CardContent className="text-red-600 p-4">{error}</CardContent>
-        </Card>
-      ): (
-        <div className="max-w-[1200px] px-8 mx-auto py-10 sm:py-20">
-            {data ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full">
-                <Card className="h-fit">
-                  <CardHeader>
-                    <CardTitle className="flex justify-between">
-                      <div className="flex items-center">
-                        <Car className="mr-2" /> Bil Detailjer
-                      </div>
-                      <Button variant="default">
-                        {data?.kjoretoydataListe?.[0].kjoretoyId.kjennemerke ?? "Ukjent"}
-                      </Button>
-                    </CardTitle>
-                  </CardHeader>
-                  <Separator />
-
-                  <CardContent className="">
-                    <pre>
-                      {JSON.stringify(data?.kjoretoydataListe?.[0], undefined, 2)}
-                    </pre>
-                  </CardContent>
-                </Card>
-
-                <Card className="h-fit">
-                  <CardHeader>
-                    <CardTitle className="flex items-center">
-                    <FileText className="mr-2" /> Tekniske Detailjer
-                    </CardTitle>
-                  </CardHeader>
-                  
-                  <Separator />
-
-                  <CardContent>
-                    <pre>
-                      {JSON.stringify(data?.kjoretoydataListe?.[0], undefined, 2)}
-                    </pre>
-                  </CardContent>
-                </Card>
-
-                <Card className="h-fit md:col-span-2">
-                  <CardHeader>
-                    <CardTitle className="flex items-center">
-                      <Info className="mr-2" /> Hvem eier bilen?
-                    </CardTitle>
-                  </CardHeader>
-
-                  <Separator />
-
-                  <CardContent className="py-5 flex items-center">
-                    <p>Du er ikke logget inn</p>
-                    <Button className="ml-2">Logg inn for å se eier</Button>
-                  </CardContent>
-                </Card>
-              </div>
-            ): (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Søk etter kjøretøy</CardTitle>
-                  <CardDescription>Skriv inn registreringsnummeret for å hente kjøretøydetaljer</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                      <FormField
-                        control={form.control}
-                        name="regNumber"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Registreringsnummer</FormLabel>
-                            <FormControl>
-                              <Input placeholder="CF 1111" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <Button type="submit" disabled={loading}>
-                        {loading ? "Søker..." : "Send inn"}
-                      </Button>
-                    </form>
-                  </Form>
-                </CardContent>
-              </Card>
-          )}
+    <main className="min-h-screen bg-green-100">
+      {isSearching ? (
+        <div className="max-w-[1200px] mx-auto flex items-center justify-center min-h-screen p-4">
+          <Card className="w-full max-w-md">
+            <CardHeader>
+              <CardTitle>Søk etter kjøretøy</CardTitle>
+              <CardDescription>Skriv inn registreringsnummeret for å hente kjøretøydetaljer</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="space-y-2">
+                  <label htmlFor="regNumber" className="text-sm font-medium">
+                    Registreringsnummer
+                  </label>
+                  <Input
+                    id="regNumber"
+                    type="text"
+                    value={regNumber}
+                    onChange={(e) => setRegNumber(e.target.value)}
+                    placeholder="F.eks. AB12345"
+                    className="w-full"
+                    disabled={isLoading}
+                  />
+                </div>
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? (
+                    <Loader2 className="animate-spin h-4 w-4" />
+                  ) : (
+                    <>
+                      Send inn
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </>
+                  )}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      ) : (
+        <div className="max-w-[1200px] mx-auto p-4">
+          <Button onClick={handleReset} className="mb-6">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Tilbake til søk
+          </Button>
+          {vehicleData && <VehicleDetails data={vehicleData} />}
         </div>
       )}
-    </div>
-  );
+    </main>
+  )
 }

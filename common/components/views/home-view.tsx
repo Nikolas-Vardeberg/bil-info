@@ -89,8 +89,6 @@ export default function HomeView() {
                     <h2 className="text-2xl sm:text-4xl">Les våre artikler</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 w-full lg:grid-cols-3 gap-8 justify-between">
 
-
-
                         <Card className="rounded-xl overflow-hidden group">
                             <div className="relative">
                                 <Image
