@@ -17,18 +17,9 @@ import { useState, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import axios from "axios"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card"
-import { Calendar, Car, Cog, FileSliders, FileText, Info, Ruler, Scale, Tag, Truck, Weight } from "lucide-react"
+import { Car, FileText, Info } from "lucide-react"
 import { Separator } from "@/ui/separator"
-import { Badge } from "@/ui/badge"
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card"
-import { Table, TableBody, TableCell, TableRow } from "@/ui/table"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/ui/tooltip"
 
- 
 const formSchema = z.object({
   regNumber: z.string().min(2).max(50),
 })

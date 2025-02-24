@@ -75,3 +75,27 @@
     @apply bg-background text-foreground;
   }
 }
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  @apply underline decoration-green-300;
+}
+
+h2 {
+  @apply text-xl underline text-black lg:text-2xl;
+}
+
+h3 {
+  @apply text-lg text-black lg:text-xl;
+}
+
+h4 {
+  @apply text-[22px]/8 text-black lg:text-[26px]/[34px];
+}
+
+h5 {
+  @apply text-sm/[26px] uppercase text-green-400;
+}
