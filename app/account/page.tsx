@@ -1,9 +1,6 @@
-import { Button } from '@/ui/button'
-import { Card } from '@/ui/card'
-import { Separator } from '@/ui/separator'
+import SidebarNav from '@/components/sidebar-nav';
 import { createClient } from '@/utils/supabase/server'
-import { ArrowRight, ChevronRight, FileText, Info, Mail, MessageSquare, Settings, Share } from 'lucide-react'
-import Link from 'next/link'
+import { User } from 'lucide-react';
 
 export default async function Account() {
   const supabase = await createClient()
@@ -13,120 +10,45 @@ export default async function Account() {
   } = await supabase.auth.getUser();
 
   return(
-    <div className='bg-green-100 min-h-screen justify-center items-center flex py-12 sm:py-20'>
-      <div className='max-w-[1200px] px-8 mx-auto flex flex-col gap-8'>
-        <h2 className='text-2xl sm:text-4xl'>Hei! {" "}<span className='underline'>{user?.email}</span></h2>
-        <Card>
-          <Button
-            variant="ghost"
-            className="w-full !rounded-none justify-between h-12 px-4"
-            asChild
-          >
-            <Link href="/">
-              <div className="flex items-center">
-                <Share className="mr-2 h-4 w-4" />
-                <span>Del med andre</span>
-              </div>
-              <ChevronRight className="h-4 w-4" />
-            </Link>
-          </Button>
-
-          <Separator />  
-
-          <Button
-            variant="ghost"
-            className="w-full !rounded-none justify-between h-12 px-4"
-            asChild
-          >
-            <Link href="/">
-              <div className="flex items-center">
-                <Settings className="mr-2 h-4 w-4" />
-                <span>Konto innstillinger</span>
-              </div>
-              <ChevronRight className="h-4 w-4" />
-            </Link>
-          </Button>
-
-          <Separator />  
-          <Button className='w-full h-12 !rounded-none justify-start' variant="ghost">
-            <MessageSquare /> Send Tilbakemeling
-          </Button>
-        </Card>
-
-        <Card>
-          <Button
-            variant="ghost"
-            className="w-full !rounded-none justify-between h-12 px-4"
-            asChild
-          >
-            <Link href="/">
-              <div className="flex items-center">
-                <Info className="mr-2 h-4 w-4" />
-                <span>Om Bil Info</span>
-              </div>
-              <ChevronRight className="h-4 w-4" />
-            </Link>
-          </Button>
-
-          <Separator />  
-
-          <Button
-            variant="ghost"
-            className="w-full !rounded-none justify-between h-12 px-4"
-            asChild
-          >
-            <Link href="/">
-              <div className="flex items-center">
-                <FileText className="mr-2 h-4 w-4" />
-                <span>Personervernerklæring</span>
-              </div>
-              <ChevronRight className="h-4 w-4" />
-            </Link>
-          </Button>
-
-          <Separator />
-
-          <Button
-            variant="ghost"
-            className="w-full !rounded-none justify-between h-12 px-4"
-            asChild
-          >
-            <Link href="/">
-              <div className="flex items-center">
-                <Info className="mr-2 h-4 w-4" />
-                <span>Informasjonskapsler</span>
-              </div>
-              <ChevronRight className="h-4 w-4" />
-            </Link>
-          </Button>
-          
-          <Separator />  
-
-          <Button
-            variant="ghost"
-            className="w-full !rounded-none justify-between h-12 px-4"
-            asChild
-          >
-            <Link href="/">
-              <div className="flex items-center">
-                <FileText className="mr-2 h-4 w-4" />
-                <span>Vilkår</span>
-              </div>
-              <ChevronRight className="h-4 w-4" />
-            </Link>
-          </Button>
-
-          <Separator />
-
-          <Button className='w-full h-12 !rounded-none justify-start' variant="ghost">
-            <Mail /> Kontakt oss
-          </Button>
-        </Card>
-        
-        <Button variant="destructive" className='w-full h-12'>
-          Log ut <ArrowRight />
-        </Button>
-      </div>
+    <div className='bg-green-100'>
+      <div className='flex flex-1 flex-col space-y-2 overflow-hidden md:space-y-2 lg:flex-row lg:space-x-12 lg:space-y-0'>
+          <aside className='top-0 lg:sticky lg:w-1/5'>
+            <SidebarNav items={sidebarNavItems}/>
+          </aside>
+          <div className='flex w-full overflow-y-hidden p-1 pr-4'>
+            Content
+          </div>
+        </div>
     </div>
   )
 }
+const sidebarNavItems = [
+  {
+    title: 'Profile',
+    icon: <User size={18} />,
+    href: '/settings',
+  },
+  {
+    title: 'Account',
+    icon: <User size={18} />,
+
+    href: '/settings/account',
+  },
+  {
+    title: 'Appearance',
+    icon: <User size={18} />,
+
+    href: '/settings/appearance',
+  },
+  {
+    title: 'Notifications',
+    icon: <User size={18} />,
+
+    href: '/settings/notifications',
+  },
+  {
+    title: 'Display',
+    icon: <User size={18} />,
+    href: '/settings/display',
+  },
+]

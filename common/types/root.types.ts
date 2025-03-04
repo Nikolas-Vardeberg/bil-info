@@ -8,6 +8,24 @@ export type BilImage = {
 
 export type Nullable<T> = T | null;
 
+export type Article = {
+  _id: string;
+  _type: "article";
+  title: string;
+  mainImage: BilImage;
+  entry: RichtTextType;
+  content: RichtTextType;
+  tags: Tag[];
+  slug: string;
+}
+
+export type Tag = {
+  _id: string;
+  _type: "tag";
+  title: string;
+  slug: string;
+}
+
 export interface VehicleData {
     kjoretoyId: {
       kjennemerke: string;
