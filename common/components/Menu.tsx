@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { ArrowRight, ChevronDown, User} from "lucide-react";
+import { User } from "lucide-react";
 import { Button } from "./ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { createClient } from "@/utils/supabase/server";
+import UserDropdown from "./UserDropdown";
 
 export default async function Menu() {
     const supabase = await createClient();
@@ -39,24 +39,7 @@ export default async function Menu() {
 
                 <div className="flex gap-x-2">
                     {user ? (
-                        <DropdownMenu>
-                            <DropdownMenuTrigger>
-                                <Button>
-                                    {user.email}
-                                    <ChevronDown />
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent>
-                                <DropdownMenuLabel>Min Bruker</DropdownMenuLabel>
-                                <DropdownMenuSeparator />
-                                    <DropdownMenuItem>Profil</DropdownMenuItem>
-                                <DropdownMenuItem>Abonnement</DropdownMenuItem>
-                                <Button className="w-full" variant="destructive">
-                                    Log ut
-                                    <ArrowRight />
-                                </Button>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
+                        <UserDropdown user={user} />
                     ): (
                         <div className="flex gap-x-2">
                             <Link href="/bil">

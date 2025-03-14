@@ -100,7 +100,7 @@ export default async function HomeView() {
                                     {article.mainImage && (
                                         <div className="relative">
                                             <Image
-                                                src={article.mainImage.url}
+                                                src={article.mainImage.asset.url}
                                                 alt={article.mainImage.alt}
                                                 width={500}
                                                 height={500}
