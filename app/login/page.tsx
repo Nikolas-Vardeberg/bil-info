@@ -1,10 +1,10 @@
 import { login } from "./actions";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { Button } from "@/ui/button";
+import Button from "@/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/ui/card";
-import { Label } from "@/ui/label";
-import { Input } from "@/ui/input";
+import Label from "@/ui/label";
+import Input from "@/ui/input";
 
 export default function Page() {
     return (

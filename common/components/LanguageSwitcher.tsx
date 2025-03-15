@@ -2,9 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
-import { Button } from './ui/button';
-import Link from 'next/link';
 import { Select, SelectValue, SelectTrigger, SelectContent, SelectItem } from './ui/select';
 
 const COOKIE_NAME = 'NEXT_LOCALE';

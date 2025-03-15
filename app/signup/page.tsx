@@ -1,14 +1,14 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/ui/card";
-import { Label } from "@/ui/label";
-import { Input } from "@/ui/input";
-import { Button } from "@/ui/button";
+import Label from "@/ui/label";
+import Input from "@/ui/input";
+import Button from "@/ui/button";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { signup } from "../login/actions";
 import { Checkbox } from "@/ui/checkbox";
 
 export default function Page() {
-    return (
+    return (    
         <div className="bg-green-100 h-screen items-center justify-center flex py-12 sm:py-20">
             <Link href="/">
                 <Button className="top-10 left-10 absolute" variant="outline">

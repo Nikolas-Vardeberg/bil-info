@@ -2,14 +2,14 @@
 
 import type React from "react"
 import { useState } from "react"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+import Input from "@/components/ui/input"
 import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { VehicleDetails } from "@/components/vechile-details"
 import { toast } from "sonner"
 import { VehicleData } from "@/types/root.types"
 import { useTranslations } from "next-intl"
+import Button from "@/ui/button"
 
 export default function Home() {
   const [regNumber, setRegNumber] = useState("")

@@ -1,8 +1,8 @@
 import Link from "next/link"
-import { Button } from "../ui/button"
 import { ArrowRight, Car, CaseSensitive, Check, Info } from "lucide-react"
 import Image from "next/image"
 import { Card, CardDescription } from "@/ui/card"
+import Button from "@/ui/button"
 
 export default function HomeView() {
     const renderHero = () => (

@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge"
 import { Calendar, Car, CarFront, FileText, Info, LifeBuoy, Ruler, Shield, User, Weight } from "lucide-react"
 import { Card, CardContent, CardHeader } from "./ui/card"
 import { Separator } from "./ui/separator"
-import { Button } from "./ui/button"
+import Button from "./ui/button"
 import { useTranslations } from "next-intl"
 
 export function VehicleDetails({ data }: { data: any }) {
