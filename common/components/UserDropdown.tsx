@@ -1,8 +1,8 @@
 "use client";
 
 import { User } from "@supabase/supabase-js";
-import { ArrowRight, ChevronDown, LogOut, Cloud, Github, CreditCard, PlusCircle, UserPlus, Settings, Plus, User as UserIcon, Mail, LifeBuoy, Users, Keyboard, MessageSquare} from "lucide-react";
-import { Button } from "./ui/button";
+import { ChevronDown, LogOut, Cloud, CreditCard, PlusCircle, UserPlus, Settings, User as UserIcon, Mail, LifeBuoy, MessageSquare} from "lucide-react";
+import Button from "./ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "./ui/dropdown-menu";
 
 interface UserDropdownProps {

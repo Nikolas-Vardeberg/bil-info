@@ -1,5 +1,5 @@
-import axios from "axios";
-import { NextRequest, NextResponse } from "next/server";
+import axios from 'axios';
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   const { regNumber } = await req.json();
@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
       `https://akfell-datautlevering.atlas.vegvesen.no/enkeltoppslag/kjoretoydata?kjennemerke=${regNumber}`,
       {
         headers: {
-          "SVV-Authorization": process.env.CAR_API,
+          'SVV-Authorization': process.env.CAR_API,
         }
       }
     );
@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error(error);
     return NextResponse.json(
-      { error: "Failed to fetch vehicle data" },
+      { error: 'Failed to fetch vehicle data' },
       { status: 500 }
     );
   }
