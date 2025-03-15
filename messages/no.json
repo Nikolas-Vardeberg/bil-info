@@ -1,0 +1,97 @@
+{
+  "navigation": {
+    "home": "Bil Info",
+    "about": "Om oss",
+    "services": "Tjenester",
+    "faq": "Ofte stilte spørsmål",
+    "search_cta": "Søk opp bilen din nå!",
+    "back": "Tilbake til"
+  },
+  "vehicle": {
+    "details": "Kjøretøydetaljer",
+    "information": "kjøretøyopplysninger",
+    "registration": {
+      "title": "Registreringsinformasjon",
+      "number": "Registreringsnummer",
+      "vin": "VIN",
+      "first_date": "Første registreringsdato",
+      "current_date": "Gjeldende registreringsdato",
+      "status": "Registreringsstatus",
+      "status_registered": "Registrert",
+      "usage_type": "Brukstype",
+      "usage_type_value": "Annen egentransport"
+    },
+    "details_section": {
+      "title": "Kjøretøydetaljer",
+      "make": "Lag",
+      "model": "Modell",
+      "type": "Typebetegnelse",
+      "category": "Kjøretøyskategori",
+      "category_description": "Bil for persontransport med høyst 8 sitteplasser i tillegg til førersetet",
+      "category_short": "Personbil",
+      "special_properties": "Spesielle egenskaper"
+    },
+    "owner": {
+      "title": "Eierinformasjon",
+      "not_logged_in": "Du er ikke logget inn",
+      "login_prompt": "Logg inn for å se eier"
+    },
+    "technical": {
+      "title": "Tekniske Detaljer",
+      "dimensions": {
+        "title": "Dimensjoner",
+        "length": "Lengde",
+        "width": "Bredde"
+      },
+      "weight": {
+        "title": "Vekt",
+        "curb": "Egenvekt",
+        "min_curb": "Minimum egenvekt",
+        "gross": "Totalvekt",
+        "payload": "Nyttelast",
+        "max_coupling": "Maksimal vertikal koblingsbelastning"
+      },
+      "axles": {
+        "title": "Aksler",
+        "count": "Antall aksler",
+        "group": "Akselgruppe",
+        "group_number": "Akselgruppe {{number}}",
+        "max_load": "Maksimal last aksel {{number}}",
+        "axle_number": "Aksel {{number}}"
+      },
+      "tires": {
+        "title": "Dekk og felger",
+        "axle_number": "Aksel {{number}}",
+        "dimension": "Dekkdimensjon",
+        "rim": "Felgdimensjon",
+        "load_index": "Lastindeks",
+        "speed_rating": "Hastighetsvurdering"
+      }
+    },
+    "approval": {
+      "title": "Godkjenningsinformasjon",
+      "id": "Godkjennings-ID",
+      "type": "Godkjenningstype",
+      "valid_from": "Gyldig fra",
+      "eu_type": "EU-typegodkjenning",
+      "variant": "Variant"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Få Full Kontroll Over Bilen Din 🚗💡",
+      "description": "Sjekk bilens historikk, spesifikasjoner og verdi på sekunder. Enkelt, raskt og nøyaktig - alt du trenger på ett sted."
+    },
+    "features": {
+      "title": "Slik fungerer det",
+      "step1": "Skriv inn registreringsnummer",
+      "step2": "Få detaljer om bilen",
+      "step3": "Sjekk bilens verdi",
+      "step4": "Ta smartere beslutninger"
+    }
+  },
+  "units": {
+    "mm": "mm",
+    "kg": "kg"
+  }
+} 

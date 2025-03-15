@@ -1,0 +1,98 @@
+{
+  "navigation": {
+    "home": "Car Info",
+    "about": "About Us",
+    "services": "Services",
+    "faq": "FAQ",
+    "search_cta": "Search Your Car Now!",
+    "back": "Back to",
+    "submit": "Submit"
+  },
+  "vehicle": {
+    "details": "Vehicle Details",
+    "information": "Vehicle Information",
+    "registration": {
+      "title": "Registration Information",
+      "number": "Registration Number",
+      "vin": "VIN",
+      "first_date": "First Registration Date",
+      "current_date": "Current Registration Date",
+      "status": "Registration Status",
+      "status_registered": "Registered",
+      "usage_type": "Usage Type",
+      "usage_type_value": "Other personal transport"
+    },
+    "details_section": {
+      "title": "Vehicle Details",
+      "make": "Make",
+      "model": "Model",
+      "type": "Type Designation",
+      "category": "Vehicle Category",
+      "category_description": "Passenger car with maximum 8 seats in addition to the driver's seat",
+      "category_short": "Passenger Car",
+      "special_properties": "Special Properties"
+    },
+    "owner": {
+      "title": "Owner Information",
+      "not_logged_in": "You are not logged in",
+      "login_prompt": "Log in to see owner"
+    },
+    "technical": {
+      "title": "Technical Details",
+      "dimensions": {
+        "title": "Dimensions",
+        "length": "Length",
+        "width": "Width"
+      },
+      "weight": {
+        "title": "Weight",
+        "curb": "Curb Weight",
+        "min_curb": "Minimum Curb Weight",
+        "gross": "Gross Vehicle Weight",
+        "payload": "Payload",
+        "max_coupling": "Max Vertical Coupling Load"
+      },
+      "axles": {
+        "title": "Axles",
+        "count": "Number of Axles",
+        "group": "Axle Group",
+        "group_number": "Axle Group {{number}}",
+        "max_load": "Max Load Axle {{number}}",
+        "axle_number": "Axle {{number}}"
+      },
+      "tires": {
+        "title": "Tires and Wheels",
+        "axle_number": "Axle {{number}}",
+        "dimension": "Tire Dimension",
+        "rim": "Rim Dimension",
+        "load_index": "Load Index",
+        "speed_rating": "Speed Rating"
+      }
+    },
+    "approval": {
+      "title": "Approval Information",
+      "id": "Approval ID",
+      "type": "Approval Type",
+      "valid_from": "Valid From",
+      "eu_type": "EU Type Approval",
+      "variant": "Variant"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Get Full Control of Your Car 🚗💡",
+      "description": "Check your car's history, specifications, and value in seconds. Simple, fast, and accurate - everything you need in one place."
+    },
+    "features": {
+      "title": "How it Works",
+      "step1": "Enter registration number",
+      "step2": "Get car details",
+      "step3": "Check car value",
+      "step4": "Make smarter decisions"
+    }
+  },
+  "units": {
+    "mm": "mm",
+    "kg": "kg"
+  }
+} 

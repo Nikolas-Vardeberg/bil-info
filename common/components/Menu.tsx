@@ -3,6 +3,7 @@ import { User } from "lucide-react";
 import { Button } from "./ui/button";
 import { createClient } from "@/utils/supabase/server";
 import UserDropdown from "./UserDropdown";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default async function Menu() {
     const supabase = await createClient();
@@ -54,8 +55,9 @@ export default async function Menu() {
                             </Link>   
                         </div>
                     )}
-                  
+                <LanguageSwitcher />
                 </div>
+
               
             </div>
         </header>
