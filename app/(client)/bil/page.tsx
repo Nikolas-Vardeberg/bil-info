@@ -4,14 +4,17 @@ import useFetchVehicle from "@/lib/hooks/useFetchVechile";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card";
 import Input from "@/ui/input";
 import Button from "@/ui/button";
-import { ArrowLeft, Loader2 } from "lucide-react";
-import { useState } from "react";
+import { ArrowLeft, Printer } from "lucide-react";
+import { useRef, useState } from "react";
 import { VehicleDetails } from "@/components/vechile-details";
 import { useTranslations } from "next-intl";
+import { useReactToPrint } from "react-to-print";
 
 export default function Page() {
     const [regNumber, setRegNumber] = useState("");
     const { vehicleData, error, isLoading, fetchVehicle } = useFetchVehicle();
+    const contentRef = useRef<HTMLDivElement>(null);
+    const reactToPrintFn = useReactToPrint({ contentRef });
     const t = useTranslations();
 
     const handleSubmit = () => {
@@ -22,12 +25,19 @@ export default function Page() {
         <div className='min-h-screen bg-green-100'>
             {vehicleData ? (
                 <div className='max-w-[1200px] mx-auto p-4'>
-                    <Button className='mb-6'>
-                        <ArrowLeft className='w-4 h-4 mr-2' />
-                        {t("navigation.back")}
+                    <div className="flex gap-2 items-center mb-6">
+                        <Button>
+                            <ArrowLeft className='w-4 h-4 mr-2' />
+                            {t("navigation.back")}
+                        </Button>
+
+                    <Button onClick={() => reactToPrintFn()} variant='outline'>
+                        <Printer className='w-4 h-4 mr-2' />
+                        Print
                     </Button>
-                    {vehicleData && <VehicleDetails data={vehicleData} />}
-               </div>
+                    </div>
+                    {vehicleData && <VehicleDetails ref={contentRef} data={vehicleData} />}
+               </div> 
             ): (
                 <div className='max-w-[1200px] mx-auto flex items-center justify-center min-h-screen p-4'>
                     <Card className='w-full max-w-md'>
@@ -56,7 +66,7 @@ export default function Page() {
                                     disabled={isLoading}
                                     loading={isLoading}
                                 >
-                                    {t('bil.search_button')}
+                                    Søk
                                 </Button>
                             </div>
                         </CardContent>

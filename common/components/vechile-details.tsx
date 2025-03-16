@@ -1,17 +1,21 @@
 import { Badge } from "@/components/ui/badge"
 import { Calendar, Car, CarFront, FileText, Info, LifeBuoy, Ruler, Shield, User, Weight } from "lucide-react"
-import { Card, CardContent, CardHeader } from "./ui/card"
 import { Separator } from "./ui/separator"
 import Button from "./ui/button"
 import { useTranslations } from "next-intl"
 import { Vehicle } from "@/types/root.types"
 import DataTable, { DataTableCard, DataTableCardContent, DataTableCardHeader, DataTableHeader } from "./data-table"
 
-export function VehicleDetails({ data }: { data: Vehicle }) {
+type Props = {
+    data: Vehicle;
+    ref: React.RefObject<HTMLDivElement>;
+}
+
+export function VehicleDetails({ data, ref }: Props) {
     const t = useTranslations()
     
     return (
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2" ref={ref}>
             <div className="flex flex-col gap-6">
 
             <DataTable>
