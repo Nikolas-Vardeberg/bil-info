@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl"
 
 export function VehicleDetails({ data }: { data: any }) {
     const t = useTranslations()
+    console.log(data);
     
   return (
     <div className="grid gap-6 md:grid-cols-2">
@@ -68,6 +69,8 @@ export function VehicleDetails({ data }: { data: any }) {
                         </div>
                     </Card>
 
+                  
+
                     <Card className="p-6 !shadow-none">
                         <div className="flex items-center gap-2 mb-4">
                             <Car className="h-5 w-5" />
@@ -100,7 +103,7 @@ export function VehicleDetails({ data }: { data: any }) {
                     </Card>
                 </CardContent>
             </Card>
-            
+
             <Card className="h-fit">
                 <CardHeader className="flex flex-row justify-between">
                     <div className="flex items-center">
@@ -120,13 +123,15 @@ export function VehicleDetails({ data }: { data: any }) {
 
       <Card className="h-fit">
         <CardHeader className="flex flex-row justify-between">
-                <div className="flex items-center">
-                    <FileText className="mr-2"/>
-                    {t("vehicle.technical.title")}
-                </div>
-            </CardHeader>
-            <Separator />
-            <CardContent className="flex flex-col gap-2 py-2">
+            <div className="flex items-center">
+                <FileText className="mr-2"/>
+                {t("vehicle.technical.title")}
+            </div>
+        </CardHeader>
+
+        <Separator />
+
+        <CardContent className="flex flex-col gap-2 py-2">
                 <Card className="p-6 !shadow-none">
                     <div className="flex items-center gap-2 mb-4">
                         <Ruler className="h-5 w-5" />
@@ -237,6 +242,8 @@ export function VehicleDetails({ data }: { data: any }) {
                     </div>
                 </Card>
 
+              
+
                 <Card className="p-6 !shadow-none">
                     <div className="flex items-center gap-2 mb-4">
                         <Shield className="h-5 w-5" />
@@ -282,4 +289,5 @@ export function VehicleDetails({ data }: { data: any }) {
     </div>
   )
 }
+
 

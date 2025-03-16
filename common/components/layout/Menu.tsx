@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { User } from "lucide-react";
 import { createClient } from "@/utils/supabase/server";
-import UserDropdown from "./UserDropdown";
-import LanguageSwitcher from "./LanguageSwitcher";
-import Button from "./ui/button";
+import UserDropdown from "../UserDropdown";
+import LanguageSwitcher from "../LanguageSwitcher";
+import Button from "../ui/button";
 
 export default async function Menu() {
     const supabase = await createClient();
