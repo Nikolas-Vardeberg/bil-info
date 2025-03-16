@@ -6,6 +6,12 @@ export type WithAuthProps = {
     user: User;
 }
 
+/**
+ * withAuth HOC
+ * @description: Higher Order Component for authentication
+ * @param WrapperComponent - The component to wrap
+ * @returns Authenticated component
+ */
 export function withAuth<P extends WithAuthProps>(
     WrapperComponent: React.ComponentType<P>
 ) {

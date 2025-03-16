@@ -8,6 +8,10 @@ type BadgeProps = React.HTMLAttributes<HTMLDivElement> & {
   className?: string;
 }
 
+/**
+ * Badge Component
+ * @description: Reusable badge component
+ */
 function Badge({
   className,
   variant,

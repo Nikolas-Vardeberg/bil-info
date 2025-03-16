@@ -1,102 +1,68 @@
-'use client'
+'use client';
 
-import type React from 'react'
-import { useState } from 'react'
-import Input from '@/components/ui/input'
-import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { VehicleDetails } from '@/components/vechile-details'
-import { useTranslations } from 'next-intl'
-import Button from '@/ui/button'
-import { VehicleData } from '@/types/root.types'
+import useFetchVehicle from "@/lib/hooks/useFetchVechile";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card";
+import Input from "@/ui/input";
+import Button from "@/ui/button";
+import { ArrowLeft, Loader2 } from "lucide-react";
+import { useState } from "react";
+import { VehicleDetails } from "@/components/vechile-details";
+import { useTranslations } from "next-intl";
 
-export default function Home() {
-  const [regNumber, setRegNumber] = useState('')
-  const [vehicleData, setVehicleData] = useState<VehicleData | null>(null)
-  const [status, setStatus] = useState<'ready' | 'error' | 'submitting' | 'done'>('ready');
-  const t = useTranslations();
+export default function Page() {
+    const [regNumber, setRegNumber] = useState("");
+    const { vehicleData, error, isLoading, fetchVehicle } = useFetchVehicle();
+    const t = useTranslations();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    setStatus('submitting');
-
-    try {
-      const response = await fetch('/api/vehicle', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ regNumber }),
-      })
-
-      const data = await response.json();
-      setVehicleData(data.kjoretoydataListe[0]);
-      setStatus('done');
-    } catch {
-      setStatus('error');
+    const handleSubmit = () => {
+      fetchVehicle(regNumber);
     }
-  }
 
-  const handleReset = () => {
-    setStatus('ready');
-    setRegNumber('');
-    setVehicleData(null);
-  }
-
-  return (
-    <main className='min-h-screen bg-green-100'>
-      {status === 'ready' && (
-         <div className='max-w-[1200px] mx-auto flex items-center justify-center min-h-screen p-4'>
-         <Card className='w-full max-w-md'>
-           <CardHeader>
-             <CardTitle>Søk etter kjøretøy</CardTitle>
-             <CardDescription>Skriv inn registreringsnummeret for å hente kjøretøydetaljer</CardDescription>
-           </CardHeader>
-           <CardContent>
-             <form onSubmit={handleSubmit} className='space-y-4'>
-               <div className='space-y-2'>
-                 <label htmlFor='regNumber' className='text-sm font-medium'>
-                   Registreringsnummer
-                 </label>
-                 <Input
-                   id='regNumber'
-                   type='text'
-                   value={regNumber}
-                   onChange={(e) => setRegNumber(e.target.value)}
-                   placeholder='F.eks. AB12345'
-                   className='w-full'
-                 />
+    return (
+        <div className='min-h-screen bg-green-100'>
+            {vehicleData ? (
+                <div className='max-w-[1200px] mx-auto p-4'>
+                    <Button className='mb-6'>
+                        <ArrowLeft className='w-4 h-4 mr-2' />
+                        {t("navigation.back")}
+                    </Button>
+                    {vehicleData && <VehicleDetails data={vehicleData} />}
                </div>
-               <Button type='submit' className='w-full'>
-                 {t('navigation.submit')}
-                 <ArrowRight className='ml-2 h-4 w-4' />
-               </Button>
-             </form>
-           </CardContent>
-         </Card>
-       </div>
-      )}
-      {status === 'done' && (
-        <div className='max-w-[1200px] mx-auto p-4'>
-         <Button onClick={handleReset} className='mb-6'>
-           <ArrowLeft className='w-4 h-4 mr-2' />
-           {t('navigation.back')}
-         </Button>
-        {vehicleData && <VehicleDetails data={vehicleData} />}
-       </div>
-      )}
-      {status === 'error' && (
-        <div className='max-w-[1200px] mx-auto p-4'>
-          <p>En feil oppstod under henting av kjøretøydetaljer. Vennligst prøv igjen senere.</p>
+            ): (
+                <div className='max-w-[1200px] mx-auto flex items-center justify-center min-h-screen p-4'>
+                    <Card className='w-full max-w-md'>
+                        <CardHeader>
+                            <CardTitle>Søk etter kjøretøy</CardTitle>
+                            <CardDescription>Skriv inn registreringsnummeret for å hente kjøretøydetaljer</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <div className='space-y-4'>
+                                <div className='space-y-2'>
+                                    <label htmlFor='regNumber' className='text-sm font-medium'>
+                                        Registreringsnummer
+                                    </label>
+                                    <Input
+                                        id='regNumber'
+                                        type='text'
+                                        value={regNumber}
+                                        onChange={(e) => setRegNumber(e.target.value)}
+                                        placeholder='F.eks. AB12345'
+                                        className='w-full'
+                                    />
+                                </div>
+                                <Button 
+                                    onClick={handleSubmit} 
+                                    className='w-full' 
+                                    disabled={isLoading}
+                                >
+                                    {isLoading ? <Loader2 className='ml-2 h-4 w-4' /> : 'Søk'}
+                                </Button>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+            )}
+            {error && <p className='text-red-500'>{error}</p>}
         </div>
-      )}
-      {status === 'submitting' && (
-        <div className='flex items-center justify-center min-h-screen'>
-          <Loader2 className='animate-spin h-5 w-5' />
-        </div>
-      )}
-    </main>
-  )
+    );
 }
-

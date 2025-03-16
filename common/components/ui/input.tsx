@@ -6,6 +6,10 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   className?: string;
 }
 
+/**
+ * Input Component
+ * @description: Reusable input component
+ */
 export default function Input({
   className,
   ...props

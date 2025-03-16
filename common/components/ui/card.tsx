@@ -6,6 +6,10 @@ type CardProps = React.HTMLAttributes<HTMLDivElement> & {
   className?: string;
 }
 
+/**
+ * Card Component
+ * @description: Reusable card component
+ */
 function Card({
   className,
   ...props
@@ -17,6 +21,10 @@ type CardHeaderProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
   className?: string;
 }
 
+/**
+ * Card Header Component
+ * @description: Reusable card header component
+ */
 function CardHeader({
   className,
   ...props
@@ -28,6 +36,10 @@ type CardTitleProps = React.HTMLAttributes<HTMLDivElement> & {
   className?: string;
 }
 
+/**
+ * Card Title Component
+ * @description: Reusable card title component
+ */
 function CardTitle({
   className,
   ...props
@@ -39,6 +51,10 @@ type CardDescriptionProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
   className?: string;
 }
 
+/**
+ * Card Description Component
+ * @description: Reusable card description component
+ */
 function CardDescription({
   className,
   ...props
@@ -50,6 +66,10 @@ type CardContentProps = React.HTMLAttributes<HTMLDivElement> & {
   className?: string;
 }
 
+/**
+ * Card Content Component
+ * @description: Reusable card content component
+ */
 function CardContent({
   className,
   ...props
@@ -61,6 +81,10 @@ type CardFooterProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
   className?: string;
 }
 
+/**
+ * Card Footer Component
+ * @description: Reusable card footer component
+ */
 function CardFooter({
   className,
   ...props

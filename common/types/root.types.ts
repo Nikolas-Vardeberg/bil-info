@@ -1,31 +1,8 @@
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export type RichtTextType = any[];
 
-export type BilImage = {
-    _type: "image";
-    alt: string;
-}
-
-export type Nullable<T> = T | null;
-
-export type Article = {
-  _id: string;
-  _type: "article";
-  title: string;
-  mainImage: BilImage;
-  entry: RichtTextType;
-  content: RichtTextType;
-  tags: Tag[];
-  slug: string;
-}
-
-export type Tag = {
-  _id: string;
-  _type: "tag";
-  title: string;
-  slug: string;
-}
-
+/**
+ * Vehicle Data Type
+ * @description: Type for vehicle data
+ */
 export interface VehicleData {
     kjoretoyId: {
       kjennemerke: string;

@@ -14,6 +14,10 @@ type LabelProps = React.LabelHTMLAttributes<HTMLLabelElement> & {
   className?: string;
 }
 
+/**
+ * Label Component
+ * @description: Reusable label component
+ */
 export default function Label({
   className,
   ...props

@@ -7,6 +7,10 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string;
 };
 
+/**
+ * Button Component
+ * @description: Reusable button component
+ */
 export default function Button({
   className,
   size,
