@@ -93,5 +93,34 @@
   "units": {
     "mm": "mm",
     "kg": "kg"
+  },
+  "login": {
+    "welcome": "Velkommen tilbake! 😊",
+    "description": "Logg inn for å fortsette der du slapp.",
+    "email": "E-post",
+    "password": "Passord",
+    "dont_have_account": "Har du ikke en konto?",
+    "sign_up": "Registrer deg"
+  },
+  "signup": {
+    "title": "Opprett Konto ✨🚀",
+    "description": "Bli en del av vårt fellesskap og få full kontroll over bilen din!",
+    "email": "E-post",
+    "password": "Passord",
+    "sign_up": "Registrer deg",
+    "already_have_account": "Har allerede en bruker?",
+    "login": "Logg inn"
+  },
+  "bil": {
+    "search_title": "Søk etter kjøretøy",
+    "search_description": "Skriv inn registreringsnummeret for å hente kjøretøydetaljer",
+    "search_placeholder": "F.eks. AB12345",
+    "search_button": "Søk"
+  },
+  "error": {
+    "title": "Oops! Noe gikk galt",
+    "description": "Noe gikk galt prøv igjen eller ta kontakt med oss",
+    "back": "Tilbake",
+    "home": "Hjem"
   }
 } 

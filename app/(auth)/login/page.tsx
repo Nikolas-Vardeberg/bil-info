@@ -5,31 +5,34 @@ import Button from '@/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/ui/card';
 import Label from '@/ui/label';
 import Input from '@/ui/input';
+import { useTranslations } from 'next-intl';
 
 export default function Page() {
+    const t = useTranslations();
+
     return (
         <div className='bg-green-100 relative h-screen items-center justify-center flex py-12 sm:py-20'>
             <Link href='/'>
                 <Button className='top-10 left-10 absolute' variant='outline'>
                     <ArrowLeft />
-                    Gå tilbake
+                    {t('navigation.back')}
                 </Button>
             </Link>
            
             <div className='flex mx-auto max-w-[1200px] px-8'>
                 <Card>
                     <CardHeader>
-                        <CardTitle className='text-3xl !font-normal'>Velkommen tilbake! 😊</CardTitle>
-                        <CardDescription>Logg inn for å fortsette der du slapp.</CardDescription>
+                        <CardTitle className='text-3xl !font-normal'>{t('login.welcome')}</CardTitle>
+                        <CardDescription>{t('login.description')}</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <form className='space-y-5'>
                             <div className='grid w-full items-center gap-3'>
-                                <Label htmlFor='email'>E-post</Label>
+                                <Label htmlFor='email'>{t('login.email')}</Label>
                                 <Input id='email' name='email' type='email' placeholder='ola@nordmann.no' required />
                             </div>
                             <div className='grid w-full items-center gap-3'>
-                                <Label htmlFor='password'>Passord</Label>
+                                <Label htmlFor='password'>{t('login.password')}</Label>
                                 <Input id='passwor' name='password' type='password' placeholder='passord' required />
                             </div>
                             <Button formAction={login} className='w-full'>
@@ -39,7 +42,7 @@ export default function Page() {
                         </form>
                     </CardContent>
                     <CardFooter>
-                        <p>Har ikke en bruker?{' '}<Link href='/signup' className='font-bold underline'>Registrer deg</Link></p>
+                        <p>{t('login.dont_have_account')}{' '}<Link href='/signup' className='font-bold underline'>{t('login.sign_up')}</Link></p>
                     </CardFooter>
                 </Card>
             </div>

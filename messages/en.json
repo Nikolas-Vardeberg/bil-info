@@ -94,5 +94,34 @@
   "units": {
     "mm": "mm",
     "kg": "kg"
+  },
+  "login": {
+    "welcome": "Welcome back! 😊",
+    "description": "Log in to continue where you left off.",
+    "email": "Email",
+    "password": "Password",
+    "dont_have_account": "Don't have an account?",
+    "sign_up": "Sign up"
+  },
+  "signup": {
+    "title": "Create Account ✨🚀",
+    "description": "Join our community and get full control of your car!",
+    "email": "Email",
+    "password": "Password",
+    "sign_up": "Sign up",
+    "already_have_account": "Already have an account?",
+    "login": "Login"
+  },
+  "bil": {
+    "search_title": "Search for a car",
+    "search_description": "Enter the registration number to get car details",
+    "search_placeholder": "F.eks. AB12345",
+    "search_button": "Search"
+  },
+  "error": {
+    "title": "Oops! Something went wrong",
+    "description": "Try again or contact us",
+    "back": "Back",
+    "home": "Home"
   }
 } 

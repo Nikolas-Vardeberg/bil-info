@@ -32,14 +32,14 @@ export default function Page() {
                 <div className='max-w-[1200px] mx-auto flex items-center justify-center min-h-screen p-4'>
                     <Card className='w-full max-w-md'>
                         <CardHeader>
-                            <CardTitle>Søk etter kjøretøy</CardTitle>
-                            <CardDescription>Skriv inn registreringsnummeret for å hente kjøretøydetaljer</CardDescription>
+                            <CardTitle>{t('bil.search_title')}</CardTitle>
+                            <CardDescription>{t('bil.search_description')}</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <div className='space-y-4'>
                                 <div className='space-y-2'>
                                     <label htmlFor='regNumber' className='text-sm font-medium'>
-                                        Registreringsnummer
+                                        {t('bil.search_placeholder')}
                                     </label>
                                     <Input
                                         id='regNumber'
@@ -56,7 +56,7 @@ export default function Page() {
                                     disabled={isLoading}
                                     loading={isLoading}
                                 >
-                                    Søk
+                                    {t('bil.search_button')}
                                 </Button>
                             </div>
                         </CardContent>

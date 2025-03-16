@@ -4,8 +4,11 @@ import { createClient } from "@/utils/supabase/server";
 import UserDropdown from "../user-dropdown";
 import LanguageSwitcher from "../LanguageSwitcher";
 import Button from "../ui/button";
+import { getTranslations } from "next-intl/server";
 
 export default async function Menu() {
+
+    const t = await getTranslations();
     const supabase = await createClient();
 
     const { data: { user } } = await supabase.auth.getUser();
@@ -15,24 +18,24 @@ export default async function Menu() {
             <div className="py-4 max-w-[1200px] px-8 mx-auto flex justify-between items-center">
                 <Link href="/">
                     <Button variant="link">
-                        Bil Info
+                        {t('navigation.home')}
                     </Button>
                 </Link>
 
                 <div className="hidden md:block">
                     <Link href="/om-oss">
                         <Button variant="ghost">
-                            Om oss
+                            {t('navigation.about')}
                         </Button>
                     </Link>
                     <Link href="/tjenester">
                         <Button variant="ghost">
-                            Tjenester
+                            {t('navigation.services')}
                         </Button>
                     </Link>
                     <Link href="/faq">
                         <Button variant="ghost">
-                            Ofte stilte spørsmål
+                            {t('navigation.faq')}
                         </Button>
                     </Link>
                     
@@ -45,7 +48,7 @@ export default async function Menu() {
                         <div className="flex gap-x-2">
                             <Link href="/bil">
                                 <Button>
-                                    Søk opp bilen din nå!
+                                    {t('navigation.search_cta')}
                                 </Button>
                             </Link>
                             <Link href="/login">

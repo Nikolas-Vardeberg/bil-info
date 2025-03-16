@@ -25,7 +25,7 @@ export function withAuth<P extends WithAuthProps>(
         } = await supabase.auth.getUser();
 
         if (!user) {
-            redirect("/login")
+            redirect("/login");
         }
 
         return (

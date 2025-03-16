@@ -5,16 +5,19 @@ import Image from 'next/image';
 import { Card, CardDescription } from '@/components/ui/card';
 import { Car, CaseSensitive, Info, Check } from 'lucide-react';
 import PageWrapper from '@/components/layout/PageWrapper';
+import { useTranslations } from 'next-intl';
 
 export default function Page() {
+    const t = useTranslations();
+
     const renderHero = () => (
         <div className='grid grid-cols-1 md:grid-cols-2 items-center justify-between w-full gap-8'>
             <div className='flex flex-col gap-8'>
-                <h1 className='text-3xl sm:text-5xl'>Få Full Kontroll Over Bilen Din 🚗💡</h1>
-                <p>Sjekk bilens historikk, spesifikasjoner og verdi på sekunder. Enkelt, raskt og nøyaktig - alt du trenger på ett sted.</p>
+                <h1 className='text-3xl sm:text-5xl'>{t('home.hero.title')}</h1>
+                <p>{t('home.hero.description')}</p>
                 <Link href='/bil' className='max-w-fit'>
                     <Button>
-                        Søk opp bilen din nå
+                        {t('navigation.search_cta')}
                         <ArrowRight />
                     </Button>
                 </Link>
@@ -33,7 +36,7 @@ export default function Page() {
 
     const renderFeatures = () => (
         <>
-            <h2 className='text-2xl sm:text-4xl'>Slik fungerer det</h2>
+            <h2 className='text-2xl sm:text-4xl'>{t('home.features.title')}</h2>
                 <div className='grid grid-cols-1 md:grid-cols-2 w-full lg:grid-cols-4 gap-8 justify-between'>
             
                     <Card className='w-full bg-yellow-100 items-center group text-center p-10 justify-center flex flex-col gap-4'>
@@ -41,7 +44,7 @@ export default function Page() {
                             <Car />
                          </div>
                         <CardDescription>
-                            <p className='text-black text-base group-hover:underline'>Skriv inn registreringsnummer</p>
+                            <p className='text-black text-base group-hover:underline'>{t('home.features.step1')}</p>
                         </CardDescription>
                     </Card>
 
@@ -50,7 +53,7 @@ export default function Page() {
                             <CaseSensitive />
                         </div>
                         <CardDescription>
-                            <p className='text-black text-base group-hover:underline'>Få detaljer om bilen</p>
+                            <p className='text-black text-base group-hover:underline'>{t('home.features.step2')}</p>
                         </CardDescription>
                     </Card>
 
@@ -59,7 +62,7 @@ export default function Page() {
                             <Info />
                         </div>
                         <CardDescription>
-                            <p className='text-black text-base group-hover:underline'>Sjekk bilens verdi</p>
+                            <p className='text-black text-base group-hover:underline'>{t('home.features.step3')}</p>
                         </CardDescription>
                     </Card>
 
@@ -68,7 +71,7 @@ export default function Page() {
                             <Check />
                         </div>
                         <CardDescription>
-                            <p className='text-black text-base group-hover:underline'>Ta smartere beslutninger</p>
+                            <p className='text-black text-base group-hover:underline'>{t('home.features.step4')}</p>
                         </CardDescription>
                     </Card>
                 </div>
