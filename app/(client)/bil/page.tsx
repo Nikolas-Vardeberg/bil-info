@@ -54,8 +54,9 @@ export default function Page() {
                                     onClick={handleSubmit} 
                                     className='w-full' 
                                     disabled={isLoading}
+                                    loading={isLoading}
                                 >
-                                    {isLoading ? <Loader2 className='ml-2 h-4 w-4' /> : 'Søk'}
+                                    Søk
                                 </Button>
                             </div>
                         </CardContent>

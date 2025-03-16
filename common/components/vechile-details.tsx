@@ -4,32 +4,26 @@ import { Card, CardContent, CardHeader } from "./ui/card"
 import { Separator } from "./ui/separator"
 import Button from "./ui/button"
 import { useTranslations } from "next-intl"
+import { Vehicle } from "@/types/root.types"
+import DataTable, { DataTableCard, DataTableCardContent, DataTableCardHeader, DataTableHeader } from "./data-table"
 
-export function VehicleDetails({ data }: { data: any }) {
+export function VehicleDetails({ data }: { data: Vehicle }) {
     const t = useTranslations()
-    console.log(data);
     
-  return (
-    <div className="grid gap-6 md:grid-cols-2">
-        <div className="flex flex-col gap-6">
-            <Card className="h-fit">
-                <CardHeader className="flex flex-row justify-between">
-                    <div className="flex items-center">
-                        <Car className="mr-2"/>
-                        {t("vehicle.details")}
-                    </div>
-                    <Badge>
-                        {data.kjoretoyId.kjennemerke}
-                    </Badge>
-                </CardHeader>
-                <Separator />
-                <CardContent className="flex flex-col gap-2 py-2">
+    return (
+        <div className="grid gap-6 md:grid-cols-2">
+            <div className="flex flex-col gap-6">
 
-                    <Card className="p-6 !shadow-none">
-                        <div className="flex items-center gap-2 mb-4">
-                            <Info className="h-5 w-5" />
-                            <h2 className="text-lg font-semibold">{t("vehicle.information")}</h2>
-                        </div>
+            <DataTable>
+                <DataTableHeader title={t("vehicle.details")} icon={<Car className="mr-2"/>}>
+                    <Badge>{data.kjoretoyId.kjennemerke}</Badge>
+                </DataTableHeader>
+
+                <Separator />
+
+                <DataTableCardContent>
+                    <DataTableCard>
+                        <DataTableCardHeader title={t("vehicle.information")} icon={<Info className="h-5 w-5" />} />
                         <div className="grid gap-2">
                             <div className="flex justify-between">
                                 <span className="text-gray-600">{t("vehicle.registration.number")}:</span>
@@ -40,13 +34,10 @@ export function VehicleDetails({ data }: { data: any }) {
                                 <span>{data.kjoretoyId.understellsnummer}</span>
                             </div>
                         </div>
-                    </Card>
+                    </DataTableCard>
 
-                    <Card className="p-6 !shadow-none">
-                        <div className="flex items-center gap-2 mb-4">
-                            <Calendar className="h-5 w-5" />
-                            <h2 className="text-lg font-semibold">{t("vehicle.registration.title")}</h2>
-                        </div>
+                    <DataTableCard>
+                        <DataTableCardHeader title={t("vehicle.registration.title")} icon={<Calendar className="h-5 w-5" />} />
                         <div className="space-y-4 font-mono text-sm">
                             <div className="grid gap-2">
                                 <div className="flex justify-between">
@@ -67,15 +58,10 @@ export function VehicleDetails({ data }: { data: any }) {
                                 </div>
                             </div>
                         </div>
-                    </Card>
+                    </DataTableCard>
 
-                  
-
-                    <Card className="p-6 !shadow-none">
-                        <div className="flex items-center gap-2 mb-4">
-                            <Car className="h-5 w-5" />
-                            <h2 className="text-lg font-semibold">{t("vehicle.details_section.title")}</h2>
-                        </div>
+                    <DataTableCard>
+                        <DataTableCardHeader title={t("vehicle.details_section.title")} icon={<Car className="h-5 w-5" />} />
                         <div className="space-y-4 font-mono text-sm">
                             <div className="grid gap-2">
                                 <div className="flex justify-between">
@@ -100,43 +86,30 @@ export function VehicleDetails({ data }: { data: any }) {
                                 </div>
                             </div>
                         </div>
-                    </Card>
-                </CardContent>
-            </Card>
+                    </DataTableCard>
+                </DataTableCardContent>
+            </DataTable>
 
-            <Card className="h-fit">
-                <CardHeader className="flex flex-row justify-between">
-                    <div className="flex items-center">
-                        <User className="mr-2"/>
-                        {t("vehicle.owner.title")}
-                    </div>
-                </CardHeader>
+            <DataTable>
+                <DataTableHeader title={t("vehicle.owner.title")} icon={<User className="mr-2"/>} />
 
                 <Separator />
 
-                <CardContent className="flex flex-col gap-2 py-2">
+                <DataTableCardContent>
                     <span>Du er ikke logget inn <Button className="ml-2">Logg inn for å se eier</Button></span>
                    
-                </CardContent>
-            </Card>
+                </DataTableCardContent>
+            </DataTable>
         </div>
 
-      <Card className="h-fit">
-        <CardHeader className="flex flex-row justify-between">
-            <div className="flex items-center">
-                <FileText className="mr-2"/>
-                {t("vehicle.technical.title")}
-            </div>
-        </CardHeader>
+      <DataTable>
+        <DataTableHeader title={t("vehicle.technical.title")} icon={<FileText className="mr-2"/>} />
 
         <Separator />
 
-        <CardContent className="flex flex-col gap-2 py-2">
-                <Card className="p-6 !shadow-none">
-                    <div className="flex items-center gap-2 mb-4">
-                        <Ruler className="h-5 w-5" />
-                        <h2 className="text-lg font-semibold">{t("vehicle.technical.dimensions.title")}</h2>
-                    </div>
+        <DataTableCardContent>
+                <DataTableCard>
+                    <DataTableCardHeader title={t("vehicle.technical.dimensions.title")} icon={<Ruler className="h-5 w-5" />} />
                     <div className="space-y-4 font-mono text-sm">
                         <div className="grid gap-2">
                             <div className="flex justify-between">
@@ -149,13 +122,10 @@ export function VehicleDetails({ data }: { data: any }) {
                             </div>
                         </div>
                     </div>
-                </Card>
+                </DataTableCard>
 
-                <Card className="p-6 !shadow-none">
-                    <div className="flex items-center gap-2 mb-4">
-                        <Weight className="h-5 w-5" />
-                        <h2 className="text-lg font-semibold">{t("vehicle.technical.weight.title")}</h2>
-                    </div>
+                <DataTableCard>
+                    <DataTableCardHeader title={t("vehicle.technical.weight.title")} icon={<Weight className="h-5 w-5" />} />
                     <div className="space-y-4 font-mono text-sm">
                         <div className="grid gap-2">
                             <div className="flex justify-between">
@@ -180,13 +150,10 @@ export function VehicleDetails({ data }: { data: any }) {
                             </div>
                         </div>
                     </div>
-                </Card>
+                </DataTableCard>
 
-                <Card className="p-6 !shadow-none">
-                    <div className="flex items-center gap-2 mb-4">
-                        <CarFront className="h-5 w-5" />
-                        <h2 className="text-lg font-semibold">{t("vehicle.technical.axles.title")}</h2>
-                    </div>
+                <DataTableCard>
+                    <DataTableCardHeader title={t("vehicle.technical.axles.title")} icon={<CarFront className="h-5 w-5" />} />
                     <div className="space-y-4 font-mono text-sm">
                         <div className="grid gap-2">
                             <div className="flex justify-between">
@@ -206,13 +173,10 @@ export function VehicleDetails({ data }: { data: any }) {
                             ))}
                         </div>
                     </div>
-                </Card>
+                </DataTableCard>
 
-                <Card className="p-6 !shadow-none">
-                    <div className="flex items-center gap-2 mb-4">
-                        <LifeBuoy className="h-5 w-5" />
-                        <h2 className="text-lg font-semibold">{t("vehicle.technical.tires.title")}</h2>
-                    </div>
+                <DataTableCard>
+                    <DataTableCardHeader title={t("vehicle.technical.tires.title")} icon={<LifeBuoy className="h-5 w-5" />} />
                     <div className="space-y-4 font-mono text-sm">
                         <div className="grid gap-2 ml-4">
                             {data.godkjenning.tekniskGodkjenning.tekniskeData.dekkOgFelg.akselDekkOgFelgKombinasjon.map(
@@ -240,15 +204,10 @@ export function VehicleDetails({ data }: { data: any }) {
                             )}
                         </div>
                     </div>
-                </Card>
+                </DataTableCard>
 
-              
-
-                <Card className="p-6 !shadow-none">
-                    <div className="flex items-center gap-2 mb-4">
-                        <Shield className="h-5 w-5" />
-                        <h2 className="text-lg font-semibold">{t("vehicle.approval.title")}</h2>
-                    </div>
+                <DataTableCard>
+                    <DataTableCardHeader title={t("vehicle.approval.title")} icon={<Shield className="h-5 w-5" />} />
                     <div className="space-y-4 font-mono text-sm">
                         <div className="grid gap-2">
                             <div className="grid grid-cols-2">
@@ -282,10 +241,10 @@ export function VehicleDetails({ data }: { data: any }) {
                             )}
                         </div>
                     </div>
-                </Card>
+                </DataTableCard>
 
-            </CardContent>
-      </Card>
+            </DataTableCardContent>
+      </DataTable>
     </div>
   )
 }

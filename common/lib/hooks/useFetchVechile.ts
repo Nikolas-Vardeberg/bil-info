@@ -1,6 +1,6 @@
 'use client';
 
-import { VehicleData } from "@/types/root.types";
+import { Vehicle } from "@/types/root.types";
 import { useState, useCallback } from "react";
 
 /**
@@ -8,7 +8,7 @@ import { useState, useCallback } from "react";
  * @description: Hook for fetching vehicle data
  */
 export default function useFetchVehicle() {
-    const [vehicleData, setVehicleData] = useState<VehicleData | null>(null);
+    const [vehicleData, setVehicleData] = useState<Vehicle | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 

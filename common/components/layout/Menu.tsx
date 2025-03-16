@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { User } from "lucide-react";
 import { createClient } from "@/utils/supabase/server";
-import UserDropdown from "../UserDropdown";
+import UserDropdown from "../user-dropdown";
 import LanguageSwitcher from "../LanguageSwitcher";
 import Button from "../ui/button";
 

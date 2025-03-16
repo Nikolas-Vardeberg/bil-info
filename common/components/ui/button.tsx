@@ -1,10 +1,13 @@
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
+import { Loader2 } from "lucide-react";
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   size?: "sm" | "lg" | "icon" | "default";
   variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
   className?: string;
+  loading?: boolean;
+  onClick?: () => void;
 };
 
 /**
@@ -15,9 +18,20 @@ export default function Button({
   className,
   size,
   variant,
+  loading,
+  onClick,
   ...props
 }: ButtonProps) { 
-  return <button {...props} className={cn(buttonVariants({ variant, size, ...props }), className)} />
+  return( 
+    <button
+      {...props}
+      onClick={onClick}
+      className={cn(buttonVariants({ variant, size, ...props }), className)}
+    >
+      {loading && <Loader2 className="w-4 h-4 animate-spin" />}
+      {props.children}
+    </button>
+    )
 }
 
 const buttonVariants = cva(
