@@ -5,7 +5,7 @@ import { Loader2, User } from "lucide-react";
 import UserDropdown from "../user-dropdown";
 import LanguageSwitcher from "../LanguageSwitcher";
 import Button from "../ui/button";
-import useFetchUser from "@/lib/hooks/useFetchUser";
+import useFetchUser from "@/hooks/useFetchUser";
 import { useTranslations } from "next-intl";
 
 export default function Menu() {
@@ -22,17 +22,17 @@ export default function Menu() {
                 </Link>
 
                 <div className="hidden md:block">
-                    <Link href="/om-oss">
+                    <Link href="#about">
                         <Button variant="ghost">
                             {t('navigation.about')}
                         </Button>
                     </Link>
-                    <Link href="/tjenester">
+                    <Link href="#features">
                         <Button variant="ghost">
                             {t('navigation.services')}
                         </Button>
                     </Link>
-                    <Link href="/faq">
+                    <Link href="#faq">
                         <Button variant="ghost">
                             {t('navigation.faq')}
                         </Button>

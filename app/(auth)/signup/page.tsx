@@ -6,13 +6,13 @@ import Input from '@/ui/input';
 import Button from '@/ui/button';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
-import { signup } from '../login/actions';
 import { Checkbox } from '@/ui/checkbox';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import PageWrapper from '@/components/layout/PageWrapper';
-import useFetchUser from '@/lib/hooks/useFetchUser';
+import useFetchUser from '@/hooks/useFetchUser';
 import { redirect } from 'next/navigation';
+import { signup } from '@/actions/auth';
 
 export default function Page() {
     const t = useTranslations();

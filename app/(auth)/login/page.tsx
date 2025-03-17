@@ -1,6 +1,5 @@
 "use client"
 
-import { login } from './actions';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Button from '@/ui/button';
@@ -8,8 +7,9 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import Label from '@/ui/label';
 import Input from '@/ui/input';
 import { useTranslations } from 'next-intl';
-import useFetchUser from '@/lib/hooks/useFetchUser';
+import useFetchUser from '@/hooks/useFetchUser';
 import { redirect } from 'next/navigation';
+import { login } from '@/actions/auth';
 
 export default function Page() {
     const t = useTranslations();

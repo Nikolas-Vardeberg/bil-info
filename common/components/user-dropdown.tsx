@@ -2,8 +2,9 @@
 
 import { ChevronDown, LogOut, Cloud, CreditCard, PlusCircle, UserPlus, Settings, User as UserIcon, Mail, LifeBuoy, MessageSquare} from "lucide-react";
 import Button from "./ui/button";
+import Link from "next/link";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "./ui/dropdown-menu";
-import useFetchUser from "@/lib/hooks/useFetchUser";
+import useFetchUser from "@/hooks/useFetchUser";
 import { User } from "@supabase/supabase-js";
 
 type Props = {
@@ -26,14 +27,12 @@ export default function UserDropdown({ user }: Props) {
           <DropdownMenuLabel>Min Bruker</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuItem>
-              <UserIcon />
-              <span>Bruker</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <CreditCard />
-              <span>Abonnement</span>
-            </DropdownMenuItem>
+            <Link href="/account">
+              <DropdownMenuItem>
+                <UserIcon />
+                <span>Bruker</span>
+              </DropdownMenuItem>
+            </Link>
             <DropdownMenuItem>
               <Settings />
               <span>Innstillinger</span>

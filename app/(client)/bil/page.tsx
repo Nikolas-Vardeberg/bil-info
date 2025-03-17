@@ -1,6 +1,6 @@
 'use client';
 
-import useFetchVehicle from "@/lib/hooks/useFetchVechile";
+import useFetchVehicle from "@/hooks/useFetchVechile";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card";
 import Input from "@/ui/input";
 import Button from "@/ui/button";

@@ -1,11 +1,16 @@
+"use client"
+
 import Button from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Card, CardDescription } from '@/components/ui/card';
+import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Car, CaseSensitive, Info, Check } from 'lucide-react';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { useTranslations } from 'next-intl';
+import { createStripeUrl } from '../../common/actions/user-subscription';
+import { startTransition } from 'react';
+import { toast } from 'sonner';
 
 export default function Page() {
     const t = useTranslations();
@@ -77,11 +82,26 @@ export default function Page() {
                 </div>
             </>
         )
+
+        const onUpgrade = () => {
+            startTransition(() => {
+                createStripeUrl()
+                .then((response) => {
+                    if (response.data) {
+                        window.location.href = response.data;
+                    }
+                })
+                .catch(() => toast.error("Something went wron"))
+            })
+        }
   
     return(
         <PageWrapper className='bg-white'>
             {renderHero()}
             {renderFeatures()}
+            <Button onClick={onUpgrade}>
+                Test
+            </Button>
         </PageWrapper>
     )
 }

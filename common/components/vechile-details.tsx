@@ -5,7 +5,7 @@ import Button from "./ui/button"
 import { useTranslations } from "next-intl"
 import { Vehicle } from "@/types/vechile.types"
 import DataTable, { DataTableCard, DataTableCardContent, DataTableCardHeader, DataTableHeader } from "./data-table"
-import useFetchUser from "@/lib/hooks/useFetchUser";
+import useFetchUser from "@/hooks/useFetchUser";
 
 type Props = {
     data: Vehicle;
@@ -104,7 +104,7 @@ export function VehicleDetails({ data, ref }: Props) {
 
                 <DataTableCardContent>
                     {user ? (
-                        <i className="text-red-500 underline">Vi jobber med dette</i>
+                        <span className="underline">Vi jobber med dette</span>
                     ) : (
                         <span>Du er ikke logget inn <Button className="ml-2">Logg inn for å se eier</Button></span>
                     )}
