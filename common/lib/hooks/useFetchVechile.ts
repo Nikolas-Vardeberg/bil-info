@@ -1,6 +1,6 @@
 'use client';
 
-import { Vehicle } from "@/types/root.types";
+import { Vehicle } from "@/types/vechile.types";
 import { useState, useCallback } from "react";
 import useFetchUser from "./useFetchUser";
 

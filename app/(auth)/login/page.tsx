@@ -1,3 +1,5 @@
+"use client"
+
 import { login } from './actions';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
@@ -6,9 +8,16 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import Label from '@/ui/label';
 import Input from '@/ui/input';
 import { useTranslations } from 'next-intl';
+import useFetchUser from '@/lib/hooks/useFetchUser';
+import { redirect } from 'next/navigation';
 
 export default function Page() {
     const t = useTranslations();
+    const { user } = useFetchUser();
+
+    if (user) {
+        redirect('/account');
+    }
 
     return (
         <div className='bg-green-100 relative h-screen items-center justify-center flex py-12 sm:py-20'>

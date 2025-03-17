@@ -110,7 +110,10 @@
     "password": "Password",
     "sign_up": "Sign up",
     "already_have_account": "Already have an account?",
-    "login": "Login"
+    "login": "Login",
+    "success_title": "Check your email",
+    "success_description": "We've sent a confirmation link to {email}",
+    "check_spam": "If you don't see the email, check your spam folder"
   },
   "bil": {
     "search_title": "Search for a car",

@@ -3,8 +3,9 @@ import { Calendar, Car, CarFront, FileText, Info, LifeBuoy, Ruler, Shield, User,
 import { Separator } from "./ui/separator"
 import Button from "./ui/button"
 import { useTranslations } from "next-intl"
-import { Vehicle } from "@/types/root.types"
+import { Vehicle } from "@/types/vechile.types"
 import DataTable, { DataTableCard, DataTableCardContent, DataTableCardHeader, DataTableHeader } from "./data-table"
+import useFetchUser from "@/lib/hooks/useFetchUser";
 
 type Props = {
     data: Vehicle;
@@ -12,7 +13,9 @@ type Props = {
 }
 
 export function VehicleDetails({ data, ref }: Props) {
-    const t = useTranslations()
+    const t = useTranslations();
+    const { user } = useFetchUser();
+    
     
     return (
         <div className="grid gap-6 md:grid-cols-2" ref={ref}>
@@ -100,7 +103,11 @@ export function VehicleDetails({ data, ref }: Props) {
                 <Separator />
 
                 <DataTableCardContent>
-                    <span>Du er ikke logget inn <Button className="ml-2">Logg inn for å se eier</Button></span>
+                    {user ? (
+                        <i className="text-red-500 underline">Vi jobber med dette</i>
+                    ) : (
+                        <span>Du er ikke logget inn <Button className="ml-2">Logg inn for å se eier</Button></span>
+                    )}
                    
                 </DataTableCardContent>
             </DataTable>
