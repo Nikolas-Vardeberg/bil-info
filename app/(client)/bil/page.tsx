@@ -15,6 +15,7 @@ export default function Page() {
     const { vehicleData, error, isLoading, fetchVehicle } = useFetchVehicle();
     const contentRef = useRef<HTMLDivElement>(null);
     const reactToPrintFn = useReactToPrint({ contentRef });
+
     const t = useTranslations();
 
     const handleSubmit = () => {

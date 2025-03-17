@@ -2,6 +2,7 @@
 
 import { Vehicle } from "@/types/root.types";
 import { useState, useCallback } from "react";
+import useFetchUser from "./useFetchUser";
 
 /**
  * useFetchVehicle Hook
@@ -11,8 +12,14 @@ export default function useFetchVehicle() {
     const [vehicleData, setVehicleData] = useState<Vehicle | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const { user, isLoading: isUserLoading } = useFetchUser();
 
     const fetchVehicle = useCallback(async (regNumber: string) => {
+        if (!user) {
+            setError("Please log in to search for vehicles");
+            return;
+        }
+
         setIsLoading(true);
         setError(null);
 
@@ -32,7 +39,7 @@ export default function useFetchVehicle() {
         } finally {
             setIsLoading(false);
         }
-    }, []);
+    }, [user]);
 
-    return { vehicleData, error, isLoading, fetchVehicle };
+    return { vehicleData, error, isLoading: isLoading || isUserLoading, fetchVehicle };
 }

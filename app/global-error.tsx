@@ -5,7 +5,6 @@ import { Home } from "lucide-react"
 import Button from "@/ui/button"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useTranslations } from "next-intl"
  
 export default function GlobalError({
   error,
@@ -15,26 +14,28 @@ export default function GlobalError({
   reset: () => void
 }) {
   const router = useRouter();
-  const t = useTranslations('error');
-
   return (
     <html>
       <body>
-        <div className='h-screen flex flex-col items-center justify-center'>
-            <h1 className='text-4xl md:text-6xl font-bold text-black mb-2'>{t('title')}</h1>
+      <div className='h-screen flex flex-col items-center justify-center'>
+            <h1 className='text-4xl md:text-6xl font-bold text-black mb-2'>
+                Oops! Noe gikk galt
+            </h1>
 
-            <p className='text-2xl text-black mb-5'>{t('description')}</p>
+            <p className='text-2xl text-black mb-5'>
+                Noe gikk galt prøv igjen eller ta kontakt med oss 
+            </p>
 
             <div className='flex items-center justify-center gap-x-3'>
                 <Button variant='default' onClick={() => router.back()}>
                     <ArrowLeft />
-                    {t('back')}
+                    Tilbake
                 </Button>
 
                 <Link href='/'>
                     <Button variant='secondary'>
                         <Home />
-                        {t('home')}
+                        Hjem
                     </Button>
                 </Link>
             </div>
