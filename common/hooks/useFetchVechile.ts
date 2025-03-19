@@ -3,6 +3,7 @@
 import { Vehicle } from "@/types/vechile.types";
 import { useState, useCallback } from "react";
 import useFetchUser from "./useFetchUser";
+import { toast } from "sonner";
 
 /**
  * useFetchVehicle Hook
@@ -16,7 +17,7 @@ export default function useFetchVehicle() {
 
     const fetchVehicle = useCallback(async (regNumber: string) => {
         if (!user) {
-            setError("Please log in to search for vehicles");
+            toast.error("Please log in to search for vehicles");
             return;
         }
 
@@ -35,7 +36,7 @@ export default function useFetchVehicle() {
             const data = await response.json();
             setVehicleData(data.kjoretoydataListe[0]);
         } catch {
-            setError("Something went wrong");
+            toast.error("Something went wrong");
         } finally {
             setIsLoading(false);
         }

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
 import type { User } from "@supabase/supabase-js";
 import { useState } from "react";
-
+import { toast } from "sonner";
 
 export default function useFetchUser() {
     const [user, setUser] = useState<User | null>(null);
@@ -17,8 +17,9 @@ export default function useFetchUser() {
             const { data, error } = await supabase.auth.getUser();
             
             if (error) {
-                setError(error.message);
+                toast.error(error.message);
             }
+
             setUser(data.user);
             setIsLoading(false);
         }
@@ -27,7 +28,7 @@ export default function useFetchUser() {
 
     const handleSignOut = async () => {
         if (!user) {
-            setError("No user found");
+            toast.error("No user found");
             return;
         }
 
@@ -36,7 +37,7 @@ export default function useFetchUser() {
                 method: 'POST'
               });
         } catch {
-            setError("Something went wrong");
+            toast.error("Something went wrong");
         } finally {
             setUser(null);
             setError(null);
